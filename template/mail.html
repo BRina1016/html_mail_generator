@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>練習用</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: #f5f5f5;
+        }
+
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        img {
+            border: 0;
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 600px;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .main-image {
+            width: 100%;
+            max-width: 540px;
+            height: auto;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .content {
+                padding: 25px 20px !important;
+            }
+
+            .main-image {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .button {
+                width: 100% !important;
+            }
+
+            .button a {
+                display: block !important;
+                padding: 15px 20px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td align="center">
+                <table class="container" width="600" cellpadding="0" cellspacing="0" border="0">
+
+                    <!-- ヘッダー画像 -->
+                    <tr>
+                        <td>
+                            <img src="絶対パスを想定" alt="header" width="600"
+                                style="width:100%; max-width:600px; height:auto;">
+                        </td>
+                    </tr>
+
+                    <!-- メール本文 -->
+                    <tr>
+                        <td class="content">
+                            <p style="margin:0 auto;font-size:14px;line-height:1.4;">
+                                {{ main_text | replace('\n', '<br>') }}
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- 可変セクション -->
+                    {% for section in sections %}
+
+                    <!-- セクション本文 -->
+                    {% if section.show_text %}
+                    <tr>
+                        <td style="padding:0 30px 30px 30px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="padding:20px;background-color:#f0f0f0;">
+                                        <p style="margin:0;font-size:15px;line-height:1.8;">
+                                            {{ section.text | replace('\n', '<br>') }}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                    <!-- セクションボタン -->
+                    {% if section.show_button %}
+                    <tr>
+                        <td align="center" style="padding:0 30px 30px 30px;">
+                            <table class="button" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td align="center" style="background-color:#333333;">
+                                        <a href="{{ section.button_url }}" target="_blank"
+                                            style="display:inline-block;padding:15px 40px;color:#ffffff;font-size:16px;line-height:1.5;text-decoration:none;">
+                                            {{ section.button_text }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                    {% endfor %}
+
+                    <!-- フッター -->
+                    <tr>
+                        <td style="padding:20px 30px;background-color:#eeeeee;">
+                            <p style="margin:0;font-size:12px;line-height:1.6;color:#666666;">
+                                {{ footer_text }}
+                            </p>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{
+    "output_filename": "new_product.html",
+
+    "main_text": "これはダミーのメール本文です。\nHTMLメール生成の動作確認を行います。",
+
+    "sections": [
+        {
+            "show_text": true,
+            "text": "これはセクションのダミーテキストです。",
+            "show_button": true,
+            "button_url": "https://example.com/",
+            "button_text": "詳細を見る"
+        }
+    ],
+
+    "footer_text": "このメールは練習用HTMLメールです。"
+}
